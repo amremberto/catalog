@@ -37,4 +37,39 @@ public class ProductsController : ControllerBase
 
         return product;
     }
+
+    //POST api/products
+    [HttpPost]
+    public void Post(Product product)
+    {
+        product.Id = Guid.NewGuid();
+
+        products.Add(product);
+    }
+
+    //PUT api/products/{id}
+    [HttpPut("{id}")]
+    public void Put(Guid id, Product updateProduct)
+    {
+        var product = products.Find(p => p.Id == id);
+
+        if (product is not null)
+        {
+            product.Name = updateProduct.Name;
+            product.Description = updateProduct.Description;
+            product.Price = updateProduct.Price;
+        }
+    }
+
+    //DELETE api/products/{id}
+    [HttpDelete("{id}")]
+    public void Delete(Guid id)
+    {
+        var product = products.Find(p => p.Id == id);
+
+        if (product is not null)
+        {
+            products.Remove(product);
+        }
+    }
 }
