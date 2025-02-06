@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProductsCatalog.WebAPI.Entities;
+using ProductsCatalog.WebAPI.Services;
 
 namespace ProductsCatalog.WebAPI.Controllers;
 
@@ -7,12 +8,15 @@ namespace ProductsCatalog.WebAPI.Controllers;
 [ApiController]
 public class ProductsController : ControllerBase
 {
-    private static List<Product> products = new List<Product>
+    private readonly IProductService _productService;
+
+    private readonly ILogger<ProductsController> _logger;
+
+    public ProductsController(IProductService productService, ILogger<ProductsController> logger)
     {
-        new Product { Id = Guid.NewGuid(), Name = "Product 1", Description = "Description 1", Price = 10.5m },
-        new Product { Id = Guid.NewGuid(), Name = "Product 2", Description = "Description 2", Price = 20.5m },
-        new Product { Id = Guid.NewGuid(), Name = "Product 3", Description = "Description 3", Price = 30.5m }
-    };
+        _productService = productService ?? throw new ArgumentNullException(nameof(productService));
+        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+    }
 
     //CRUD operations
 
@@ -20,20 +24,18 @@ public class ProductsController : ControllerBase
     [HttpGet]
     public List<Product> Get()
     {
-        return products;
+        _logger.LogInformation("Obtain all products");
+
+        var result = _productService.GetProducts();
+
+        return result;
     }
 
     //GET api/products/{id}
     [HttpGet("{id}")]
     public Product Get(Guid id)
     {
-        var product = products.Find(p => p.Id == id);
-
-        if (product is null)
-        {
-            var result = new Product();
-            return result;
-        }
+        var product = _productService.GetProduct(id);
 
         return product;
     }
@@ -42,34 +44,20 @@ public class ProductsController : ControllerBase
     [HttpPost]
     public void Post(Product product)
     {
-        product.Id = Guid.NewGuid();
-
-        products.Add(product);
+        _productService.AddProduct(product);
     }
 
     //PUT api/products/{id}
     [HttpPut("{id}")]
     public void Put(Guid id, Product updateProduct)
     {
-        var product = products.Find(p => p.Id == id);
-
-        if (product is not null)
-        {
-            product.Name = updateProduct.Name;
-            product.Description = updateProduct.Description;
-            product.Price = updateProduct.Price;
-        }
+        _productService.UpdateProduct(id, updateProduct);
     }
 
     //DELETE api/products/{id}
     [HttpDelete("{id}")]
     public void Delete(Guid id)
     {
-        var product = products.Find(p => p.Id == id);
-
-        if (product is not null)
-        {
-            products.Remove(product);
-        }
+        _productService.DeleteProduct(id);
     }
 }
