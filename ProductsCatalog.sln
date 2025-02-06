@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8AF6D271-7891-4E03-B899-185475F951E0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{857B2E4F-76CF-482F-B71C-A0CC6C9338F6}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{3CBEE558-9888-4635-8F2A-28E8D34D6809}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{694BD373-5B3D-486A-8653-AAA8E12BF55C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductsCatalog.WebAPI", "src\ProductsCatalog.WebAPI\ProductsCatalog.WebAPI.csproj", "{CEF3CD70-E729-4794-8587-CBAF1586C570}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CEF3CD70-E729-4794-8587-CBAF1586C570}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEF3CD70-E729-4794-8587-CBAF1586C570}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEF3CD70-E729-4794-8587-CBAF1586C570}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEF3CD70-E729-4794-8587-CBAF1586C570}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CEF3CD70-E729-4794-8587-CBAF1586C570} = {8AF6D271-7891-4E03-B899-185475F951E0}
+	EndGlobalSection
+EndGlobal
