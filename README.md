@@ -1,2 +1,2 @@
 # catalog
-Products Catalog
+Products Catalog Web API
